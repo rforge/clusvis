@@ -90,7 +90,7 @@ rlogtikmixmod <- function(resmixmod){
 ##'
 ##' @param mixmodResult [\code{\linkS4class{MixmodCluster}}] It is an instance of class MixmodCluster returned by function mixmodCluster of R package Rmixmod.
 ##' @param sample.size numeric. Number of probabilities of classification sampled for parameter inference.
-##' @param maxit numeric. It limits the number of iterations for the Quasi-Newton algorithm (default 1000)!!!!!!
+##' @param maxit numeric. It limits the number of iterations for the Quasi-Newton algorithm (default 1000).
 ##' @param nbrandomInit numeric. It defines the number of random initialization of the Quasi-Newton algorithm.
 ##' @param nbcpu numeric. It specifies the number of CPU (only for linux).
 ##' @param loccont numeric. Index of the column containing continuous variables (only for mixed-type data).
@@ -118,7 +118,7 @@ rlogtikmixmod <- function(resmixmod){
 ##' @export
 ##'
 ##'
-clusvisMixmod <- function(mixmodResult, sample.size=5000, maxit=10**3, nbrandomInit=4*mixmodResult@bestResult@nbCluster, nbcpu=3, loccont=NULL){
+clusvisMixmod <- function(mixmodResult, sample.size=5000, maxit=10**3, nbrandomInit=4*mixmodResult@bestResult@nbCluster, nbcpu=2, loccont=NULL){
   if (mixmodResult@dataType != "composite"){
     tmp <- t(apply(mixmodResult@data, 1, dlogtik, resmixmod=mixmodResult))
   }else{

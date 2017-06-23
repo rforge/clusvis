@@ -26,5 +26,22 @@ plotDensityClusVisu(res, dim = c(1, 2), threshold = 0.95, add.obs = FALSE,
 Function for visualizing the clustering results
 }
 \examples{
-set.seed(123)
+# Package loading
+require(Rmixmod)
+
+# Data loading (categorical data)
+data(birds)
+
+# Model-based clustering with 3 components
+resmixmod <- mixmodCluster(birds, 3)
+
+# Inference of the parameters used for results visualization
+# (specific for Rmixmod results)
+resvisu <- clusvisMixmod(resmixmod)
+
+# Component interpretation graph
+plotDensityClusVisu(resvisu)
+
+# Scatter-plot of the observation memberships
+plotDensityClusVisu(resvisu,  add.obs = TRUE)
 }

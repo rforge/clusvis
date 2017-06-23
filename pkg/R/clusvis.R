@@ -100,6 +100,12 @@ clusvis <- function(logtik.estim,
                     maxit=10**3,
                     nbrandomInit=12,
                     nbcpu=3){
+  if (Sys.info()["sysname"] == "Linux"){
+    nbcpu <- min(nbcpu, detectCores())
+  }else{
+    nbcpu <- 1
+  }
+  
   if (any(logtik.estim == -Inf)) logtik.estim <- logtik.estim[which(rowSums(logtik.estim == -Inf) ==0),]
   if (is.null(logtik.obs))   logtik.obs <- logtik.estim
   out <- list()

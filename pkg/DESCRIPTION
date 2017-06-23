@@ -7,10 +7,11 @@ Maintainer: Marbac, M. <matthieu.marbac@gmail.com>
 Description: Gaussian-Based Visualization of clustering achieved by mixture model on any type of data. Visualization is based on the probabilities of classification.
 License: GPL (>= 2)
 Imports: Rcpp, MASS, RcppArmadillo,  parallel, mgcv, mvtnorm, Rmixmod
+LinkingTo: Rcpp,  RcppArmadillo,  mvtnorm
 ByteCompile: true
 Encoding: UTF-8
 LazyLoad: yes
 LazyData: true
 Collate: 'clusvis.R' 'estimation.R' 'smartinit.R' 'RcppExports.R' 'plot.R' 'clusvismixmod.R'  'modessearch.R'
-Depends: R (>= 3.2.3)
+Depends: R (>= 3.1)
 RoxygenNote: 6.0.1

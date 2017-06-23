@@ -13,7 +13,7 @@ clusvisMixmod(mixmodResult, sample.size = 5000, maxit = 10^3,
 
 \item{sample.size}{numeric. Number of probabilities of classification sampled for parameter inference.}
 
-\item{maxit}{numeric. It limits the number of iterations for the Quasi-Newton algorithm (default 1000)!!!!!!}
+\item{maxit}{numeric. It limits the number of iterations for the Quasi-Newton algorithm (default 1000).}
 
 \item{nbrandomInit}{numeric. It defines the number of random initialization of the Quasi-Newton algorithm.}
 
