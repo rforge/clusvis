@@ -99,7 +99,7 @@ clusvis <- function(logtik.estim,
                     logtik.obs=NULL,
                     maxit=10**3,
                     nbrandomInit=12,
-                    nbcpu=3){
+                    nbcpu=1){
   if (Sys.info()["sysname"] == "Linux"){
     nbcpu <- min(nbcpu, detectCores())
   }else{

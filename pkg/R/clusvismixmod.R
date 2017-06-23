@@ -118,7 +118,7 @@ rlogtikmixmod <- function(resmixmod){
 ##' @export
 ##'
 ##'
-clusvisMixmod <- function(mixmodResult, sample.size=5000, maxit=10**3, nbrandomInit=4*mixmodResult@bestResult@nbCluster, nbcpu=2, loccont=NULL){
+clusvisMixmod <- function(mixmodResult, sample.size=5000, maxit=10**3, nbrandomInit=4*mixmodResult@bestResult@nbCluster, nbcpu=1, loccont=NULL){
   if (mixmodResult@dataType != "composite"){
     tmp <- t(apply(mixmodResult@data, 1, dlogtik, resmixmod=mixmodResult))
   }else{
