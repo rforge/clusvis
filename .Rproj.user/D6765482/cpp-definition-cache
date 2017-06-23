@@ -1,0 +1,107 @@
+[
+    {
+        "definitions" : [
+            {
+                "column" : 13,
+                "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+                "kind" : 6,
+                "line" : 11,
+                "name" : "convertVecToMat(const Col<double> &, const int)",
+                "parent_name" : "",
+                "usr" : "c:@F@convertVecToMat#&1$@N@arma@C@Col>#d#1I#"
+            },
+            {
+                "column" : 13,
+                "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+                "kind" : 6,
+                "line" : 24,
+                "name" : "convertMatToVec(const Mat<double>)",
+                "parent_name" : "",
+                "usr" : "c:@F@convertMatToVec#1$@N@arma@C@Mat>#d#"
+            },
+            {
+                "column" : 13,
+                "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+                "kind" : 6,
+                "line" : 38,
+                "name" : "phiinvall(const Mat<double> &, const Mat<double>)",
+                "parent_name" : "",
+                "usr" : "c:@F@phiinvall#&1$@N@arma@C@Mat>#d#1S1_#"
+            },
+            {
+                "column" : 13,
+                "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+                "kind" : 6,
+                "line" : 46,
+                "name" : "gradphiinvhh(const Row<double>, const Mat<double> &, const int)",
+                "parent_name" : "",
+                "usr" : "c:@F@gradphiinvhh#1$@N@arma@C@Row>#d#&1$@N@arma@C@Mat>#d#1I#"
+            },
+            {
+                "column" : 23,
+                "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+                "kind" : 6,
+                "line" : 54,
+                "name" : "computegradPhiInv(const Row<double>, const Mat<double> &)",
+                "parent_name" : "",
+                "usr" : "c:@F@computegradPhiInv#1$@N@arma@C@Row>#d#&1$@N@arma@C@Mat>#d#"
+            },
+            {
+                "column" : 13,
+                "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+                "kind" : 6,
+                "line" : 72,
+                "name" : "gradl1ind(const Row<double>, const Row<double>, const Mat<double> &)",
+                "parent_name" : "",
+                "usr" : "c:@F@gradl1ind#1$@N@arma@C@Row>#d#1S0_#&1$@N@arma@C@Mat>#d#"
+            },
+            {
+                "column" : 8,
+                "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+                "kind" : 6,
+                "line" : 96,
+                "name" : "Sign(const double)",
+                "parent_name" : "",
+                "usr" : "c:@F@Sign#1d#"
+            },
+            {
+                "column" : 13,
+                "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+                "kind" : 6,
+                "line" : 102,
+                "name" : "computeGradient(const Col<double> &, const Mat<double> &, const Mat<double> &)",
+                "parent_name" : "",
+                "usr" : "c:@F@computeGradient#&1$@N@arma@C@Col>#d#&1$@N@arma@C@Mat>#d#S2_#"
+            },
+            {
+                "column" : 8,
+                "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+                "kind" : 6,
+                "line" : 119,
+                "name" : "computeCompleteLogLikelihood(const Col<double> &, const vector<double> &, const Mat<double> &, const Mat<double> &)",
+                "parent_name" : "",
+                "usr" : "c:@F@computeCompleteLogLikelihood#&1$@N@arma@C@Col>#d#&1$@N@std@N@__1@C@vector>#d#$@N@std@N@__1@C@allocator>#d#&1$@N@arma@C@Mat>#d#S5_#"
+            },
+            {
+                "column" : 16,
+                "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+                "kind" : 6,
+                "line" : 137,
+                "name" : "computeGradientCPP(NumericVector, NumericVector, NumericMatrix, NumericMatrix)",
+                "parent_name" : "",
+                "usr" : "c:@F@computeGradientCPP#$@N@Rcpp@C@Vector>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S1_#"
+            },
+            {
+                "column" : 16,
+                "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+                "kind" : 6,
+                "line" : 152,
+                "name" : "computeLikelihoodCPP(NumericVector, NumericVector, NumericMatrix, NumericMatrix)",
+                "parent_name" : "",
+                "usr" : "c:@F@computeLikelihoodCPP#$@N@Rcpp@C@Vector>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S1_#"
+            }
+        ],
+        "file" : "/home/matt/Documents/recherche/visualisation/clusvis/pkg/src/clusvis.cpp",
+        "file_last_write" : 1492786985
+    }
+]
