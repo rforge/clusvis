@@ -14,7 +14,7 @@ clusvis(logtik.estim, prop = rep(1/ncol(logtik.estim), ncol(logtik.estim)),
 
 \item{logtik.obs}{matrix. It contains the probabilities of classification of the clustered sample. If missing, logtik.estim is used.}
 
-\item{maxit}{numeric. It limits the number of iterations for the Quasi-Newton algorithm (default 1000)!!!!!!}
+\item{maxit}{numeric. It limits the number of iterations for the Quasi-Newton algorithm (default 1000).}
 
 \item{nbrandomInit}{numeric. It defines the number of random initialization of the Quasi-Newton algorithm.}
 
@@ -27,6 +27,9 @@ Returns a list
 This function estimates the parameters used for visualization
 }
 \examples{
+# Package loading
+require(Rmixmod)
+ 
 # Data loading (categorical data)
 data(birds)
 
@@ -34,7 +37,8 @@ data(birds)
 resmixmod <- mixmodCluster(birds, 3)
 
 # Inference of the parameters used for results visualization (general approach)
-# Warning probabilities of classification are not sampled from the model parameter
-# Only the observed probabilities of classification are used for parameter estimation
-resvisu <- clusvis(log(resmixmod@bestResult@proba), resmixmod@bestResult@parameters@proportions)
+# Probabilities of classification are not sampled from the model parameter,
+# but observed probabilities of classification are used for parameter estimation
+resvisu <- clusvis(log(resmixmod@bestResult@proba),
+                   resmixmod@bestResult@parameters@proportions)
 }

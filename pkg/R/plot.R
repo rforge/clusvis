@@ -1,20 +1,35 @@
 ###################################################################################
 ##' Function for visualizing the clustering results
 ##'
-##' @param res object return by function clusvis
-##' @param add.centers boolean. If TRUE, centers are plotted.
-##' @param add.obs   boolean. If TRUE, coordinnates of the observations are plotted.
-##' @param threshold   numeric. It contains the thersholds used for computing the level curves.
+##' @param res object return by function \link{clusvis} or \link{clusvis}
 ##' @param dim   numeric. This vector of size two choose the axes to represent.
-##' @param col.dots   numeric/character. It specifies the color of the dots.
-##' @param col.centers  numeric/character. It specifies the color of the centers.
-##' @param cex.dots   numeric. It specifies the size of the observations.
-##' @param ...   other parameters of the plot function.
+##' @param threshold   numeric. It contains the thersholds used for computing the level curves.
+##' @param add.obs   boolean. If TRUE, coordinnates of the observations are plotted.
+##' @param positionlegend  character. It specifies the legend location.
+##' @param xlim  numeric. It specifies the range of x-axis.
+##' @param ylim  numeric. It specifies the range of y-axis.
 ##'
 ##'
 ##' @return NULL
 ##' @examples
-##' set.seed(123)
+##' # Package loading
+##' require(Rmixmod)
+##' 
+##' # Data loading (categorical data)
+##' data(birds)
+##'
+##' # Model-based clustering with 3 components
+##' resmixmod <- mixmodCluster(birds, 3)
+##'
+##' # Inference of the parameters used for results visualization
+##' # (specific for Rmixmod results)
+##' resvisu <- clusvisMixmod(resmixmod)
+##'
+##' # Component interpretation graph
+##' plotDensityClusVisu(resvisu)
+##'
+##' # Scatter-plot of the observation memberships
+##' plotDensityClusVisu(resvisu,  add.obs = TRUE)
 ##' @export
 ##'
 plotDensityClusVisu <- function(res,

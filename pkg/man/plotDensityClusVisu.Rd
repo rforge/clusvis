@@ -8,7 +8,7 @@ plotDensityClusVisu(res, dim = c(1, 2), threshold = 0.95, add.obs = FALSE,
   positionlegend = "topright", xlim = NULL, ylim = NULL)
 }
 \arguments{
-\item{res}{object return by function clusvis}
+\item{res}{object return by function \link{clusvis} or \link{clusvis}}
 
 \item{dim}{numeric. This vector of size two choose the axes to represent.}
 
@@ -16,15 +16,11 @@ plotDensityClusVisu(res, dim = c(1, 2), threshold = 0.95, add.obs = FALSE,
 
 \item{add.obs}{boolean. If TRUE, coordinnates of the observations are plotted.}
 
-\item{add.centers}{boolean. If TRUE, centers are plotted.}
+\item{positionlegend}{character. It specifies the legend location.}
 
-\item{col.dots}{numeric/character. It specifies the color of the dots.}
+\item{xlim}{numeric. It specifies the range of x-axis.}
 
-\item{col.centers}{numeric/character. It specifies the color of the centers.}
-
-\item{cex.dots}{numeric. It specifies the size of the observations.}
-
-\item{...}{other parameters of the plot function.}
+\item{ylim}{numeric. It specifies the range of y-axis.}
 }
 \description{
 Function for visualizing the clustering results

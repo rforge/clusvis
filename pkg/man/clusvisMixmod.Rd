@@ -2,29 +2,48 @@
 % Please edit documentation in R/clusvismixmod.R
 \name{clusvisMixmod}
 \alias{clusvisMixmod}
-\title{This function performs the variable selection and the maximum likelihood estimation of the Latent Class Model}
+\title{This function estimates the parameters used for visualization of model-based clustering performs with R package Rmixmod. To achieve the parameter infernece, it automatically samples probabilities of classification from the model parameters}
 \usage{
 clusvisMixmod(mixmodResult, sample.size = 5000, maxit = 10^3,
   nbrandomInit = 4 * mixmodResult@bestResult@nbCluster, nbcpu = 3,
   loccont = NULL)
 }
 \arguments{
-\item{maxit}{numeric. It limits the number of iterations for the Quasi-Newton algorithm (default 1000)}
+\item{mixmodResult}{[\code{\linkS4class{MixmodCluster}}] It is an instance of class MixmodCluster returned by function mixmodCluster of R package Rmixmod.}
+
+\item{sample.size}{numeric. Number of probabilities of classification sampled for parameter inference.}
+
+\item{maxit}{numeric. It limits the number of iterations for the Quasi-Newton algorithm (default 1000)!!!!!!}
 
 \item{nbrandomInit}{numeric. It defines the number of random initialization of the Quasi-Newton algorithm.}
 
-\item{logtik.estim}{matrix. It contains the probabilities of classification used for parameter inference.}
+\item{nbcpu}{numeric. It specifies the number of CPU (only for linux).}
 
-\item{prop}{vector. It contains the class proportions (by default, classes have same proportion).}
-
-\item{logtik.obs}{matrix. It contains the probabilities of classification of the clustered sample. If missing, logtik.estim is used.}
+\item{loccont}{numeric. Index of the column containing continuous variables (only for mixed-type data).}
 }
 \value{
 Returns a list
 }
 \description{
-This function performs the variable selection and the maximum likelihood estimation of the Latent Class Model
+This function estimates the parameters used for visualization of model-based clustering performs with R package Rmixmod. To achieve the parameter infernece, it automatically samples probabilities of classification from the model parameters
 }
 \examples{
-set.seed(123)
+# Package loading
+require(Rmixmod)
+
+# Data loading (categorical data)
+data(birds)
+
+# Model-based clustering with 3 components
+resmixmod <- mixmodCluster(birds, 3)
+
+# Inference of the parameters used for results visualization
+# (specific for Rmixmod results)
+resvisu <- clusvisMixmod(resmixmod)
+
+# Component interpretation graph
+plotDensityClusVisu(resvisu)
+
+# Scatter-plot of the observation memberships
+plotDensityClusVisu(resvisu,  add.obs = TRUE)
 }

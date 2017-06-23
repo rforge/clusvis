@@ -6,11 +6,11 @@ Author: Biernacki, C. and Marbac, M. and Vandewalle, V.
 Maintainer: Marbac, M. <matthieu.marbac@gmail.com>
 Description: Gaussian-Based Visualization of clustering achieved by mixture model on any type of data. Visualization is based on the probabilities of classification.
 License: GPL (>= 2)
-Imports: Rcpp (>= 0.11.1), MASS, RcppArmadillo, parallel,  mgcv, mvtnorm, Rmixmod
-LinkingTo: Rcpp, RcppArmadillo, RcppNumerical, parallel,  mgcv, mvtnorm, Rmixmod
+Imports: Rcpp, MASS, RcppArmadillo,  parallel, mgcv, mvtnorm, Rmixmod
 ByteCompile: true
 Encoding: UTF-8
+LazyLoad: yes
 LazyData: true
-Collate: 'clusvis.R' 'estimation.R' 'smartinit.R' 'RcppExports.R' 'plot.R' 'clusvismixmod.R' 'clusvismixcomp.R' 'clusvisvarsellcm.R' 'modessearch.R'
+Collate: 'clusvis.R' 'estimation.R' 'smartinit.R' 'RcppExports.R' 'plot.R' 'clusvismixmod.R'  'modessearch.R'
 Depends: R (>= 3.2.3)
 RoxygenNote: 6.0.1

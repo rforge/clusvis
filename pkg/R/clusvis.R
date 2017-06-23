@@ -13,7 +13,7 @@
 ##' }
 ##'
 ##' The main function for parameter inference is \link{clusvis}.
-##' However, specific functions for parameter inference \link{clusvismixmod} and \link{clusvismixcomp} are implemented to deal with model-based clustering done with R packages Rmixmod and Rmixcomp respectively.
+##' However, specific functions for parameter inference  \link{clusvisMixmod} are implemented to deal with model-based clustering done with R packages Rmixmod and Rmixcomp respectively.
 ##' After parameter inference, visualization is done with function \link{plotDensityClusVisu}.
 ##'
 ##'
@@ -23,6 +23,7 @@
 ##' @docType package
 ##' @keywords package
 ##' @useDynLib ClusVis
+##' @author Marbac, M., Biernacki, C., and Vandewalle, V.
 ##' @import Rcpp
 ##' @import RcppArmadillo
 ##' @import MASS
@@ -30,11 +31,12 @@
 ##' @import mgcv
 ##' @import mvtnorm
 ##' @import Rmixmod
-##' @author Marbac, M., Biernacki, C., and Vandewalle, V.
-##'
 ##'
 ##' @examples
 ##' ### Categorical data clustering
+##' # Package loading
+##' require(Rmixmod)
+##'  
 ##' # Data loading (categorical data)
 ##' data(birds)
 ##'
@@ -42,11 +44,15 @@
 ##' resmixmod <- mixmodCluster(birds, 3)
 ##'
 ##' # Inference of the parameters used for results visualization (general approach)
-##' # Warning probabilities of classification are not sampled from the model parameter
-##' # Only the observed probabilities of classification are used for parameter estimation
-##' resvisu <- clusvis(log(resmixmod@bestResult@proba), resmixmod@bestResult@parameters@proportions)
+##' # Probabilities of classification are not sampled from the model parameter,
+##' # but observed probabilities of classification are used for parameter estimation
+##' resvisu <- clusvis(log(resmixmod@bestResult@proba),
+##'                    resmixmod@bestResult@parameters@proportions)
 ##'
-##' # Inference of the parameters used for results visualization (specific for Rmixmod results)
+##' # Inference of the parameters used for results visualization
+##' # (specific for Rmixmod results)
+##' # It is better because probabilities of classification are generated
+##' # by using the model parameters
 ##' resvisu <- clusvisMixmod(resmixmod)
 ##'
 ##' # Component interpretation graph
@@ -64,12 +70,15 @@ NULL
 ##' @param logtik.estim matrix. It contains the probabilities of classification used for parameter inference (should be sampled from the model parameter or computed from the observations).
 ##' @param prop vector. It contains the class proportions (by default, classes have same proportion).
 ##' @param logtik.obs   matrix. It contains the probabilities of classification of the clustered sample. If missing, logtik.estim is used.
-##' @param maxit numeric. It limits the number of iterations for the Quasi-Newton algorithm (default 1000)!!!!!!
+##' @param maxit numeric. It limits the number of iterations for the Quasi-Newton algorithm (default 1000).
 ##' @param nbrandomInit numeric. It defines the number of random initialization of the Quasi-Newton algorithm.
 ##' @param nbcpu numeric. It specifies the number of CPU (only for linux)
 ##'
 ##' @return Returns a list
 ##' @examples
+##' # Package loading
+##' require(Rmixmod)
+##'  
 ##' # Data loading (categorical data)
 ##' data(birds)
 ##'
@@ -77,14 +86,20 @@ NULL
 ##' resmixmod <- mixmodCluster(birds, 3)
 ##'
 ##' # Inference of the parameters used for results visualization (general approach)
-##' # Warning probabilities of classification are not sampled from the model parameter
-##' # Only the observed probabilities of classification are used for parameter estimation
-##' resvisu <- clusvis(log(resmixmod@bestResult@proba), resmixmod@bestResult@parameters@proportions)
+##' # Probabilities of classification are not sampled from the model parameter,
+##' # but observed probabilities of classification are used for parameter estimation
+##' resvisu <- clusvis(log(resmixmod@bestResult@proba),
+##'                    resmixmod@bestResult@parameters@proportions)
 ##
 ##' @export
 ##'
 ##'
-clusvis <- function(logtik.estim, prop=rep(1/ncol(logtik.estim), ncol(logtik.estim)), logtik.obs=NULL, maxit=10**3, nbrandomInit=12, nbcpu=3){
+clusvis <- function(logtik.estim,
+                    prop=rep(1/ncol(logtik.estim), ncol(logtik.estim)),
+                    logtik.obs=NULL,
+                    maxit=10**3,
+                    nbrandomInit=12,
+                    nbcpu=3){
   if (any(logtik.estim == -Inf)) logtik.estim <- logtik.estim[which(rowSums(logtik.estim == -Inf) ==0),]
   if (is.null(logtik.obs))   logtik.obs <- logtik.estim
   out <- list()

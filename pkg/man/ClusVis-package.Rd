@@ -19,11 +19,14 @@ To do
 }
 
 The main function for parameter inference is \link{clusvis}.
-However, specific functions for parameter inference \link{clusvismixmod} and \link{clusvismixcomp} are implemented to deal with model-based clustering done with R packages Rmixmod and Rmixcomp respectively.
+However, specific functions for parameter inference  \link{clusvisMixmod} are implemented to deal with model-based clustering done with R packages Rmixmod and Rmixcomp respectively.
 After parameter inference, visualization is done with function \link{plotDensityClusVisu}.
 }
 \examples{
 ### Categorical data clustering
+# Package loading
+require(Rmixmod)
+ 
 # Data loading (categorical data)
 data(birds)
 
@@ -31,11 +34,15 @@ data(birds)
 resmixmod <- mixmodCluster(birds, 3)
 
 # Inference of the parameters used for results visualization (general approach)
-# Warning probabilities of classification are not sampled from the model parameter
-# Only the observed probabilities of classification are used for parameter estimation
-resvisu <- clusvis(log(resmixmod@bestResult@proba), resmixmod@bestResult@parameters@proportions)
+# Probabilities of classification are not sampled from the model parameter,
+# but observed probabilities of classification are used for parameter estimation
+resvisu <- clusvis(log(resmixmod@bestResult@proba),
+                   resmixmod@bestResult@parameters@proportions)
 
-# Inference of the parameters used for results visualization (specific for Rmixmod results)
+# Inference of the parameters used for results visualization
+# (specific for Rmixmod results)
+# It is better because probabilities of classification are generated
+# by using the model parameters
 resvisu <- clusvisMixmod(resmixmod)
 
 # Component interpretation graph
