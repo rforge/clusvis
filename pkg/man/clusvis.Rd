@@ -5,7 +5,7 @@
 \title{This function estimates the parameters used for visualization}
 \usage{
 clusvis(logtik.estim, prop = rep(1/ncol(logtik.estim), ncol(logtik.estim)),
-  logtik.obs = NULL, maxit = 10^3, nbrandomInit = 12, nbcpu = 3)
+  logtik.obs = NULL, maxit = 10^3, nbrandomInit = 12, nbcpu = 1)
 }
 \arguments{
 \item{logtik.estim}{matrix. It contains the probabilities of classification used for parameter inference (should be sampled from the model parameter or computed from the observations).}

@@ -5,7 +5,7 @@
 \title{This function estimates the parameters used for visualization of model-based clustering performs with R package Rmixmod. To achieve the parameter infernece, it automatically samples probabilities of classification from the model parameters}
 \usage{
 clusvisMixmod(mixmodResult, sample.size = 5000, maxit = 10^3,
-  nbrandomInit = 4 * mixmodResult@bestResult@nbCluster, nbcpu = 3,
+  nbrandomInit = 4 * mixmodResult@bestResult@nbCluster, nbcpu = 1,
   loccont = NULL)
 }
 \arguments{
