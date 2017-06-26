@@ -1,7 +1,7 @@
 
 ##' Model-based visualization of model-based clustering.
 ##'
-##' To do
+##'  
 ##'
 ##' \tabular{ll}{
 ##'   Package: \tab ClusVis\cr
@@ -12,6 +12,7 @@
 ##'   LazyLoad: \tab yes\cr
 ##' }
 ##'
+##' @description 
 ##' The main function for parameter inference is \link{clusvis}.
 ##' However, specific functions for parameter inference  \link{clusvisMixmod} are implemented to deal with model-based clustering done with R packages Rmixmod and Rmixcomp respectively.
 ##' After parameter inference, visualization is done with function \link{plotDensityClusVisu}.
@@ -23,7 +24,7 @@
 ##' @docType package
 ##' @keywords package
 ##' @useDynLib ClusVis
-##' @author Marbac, M., Biernacki, C., and Vandewalle, V.
+##' @author Biernacki, C. and Marbac, M. and Vandewalle, V.
 ##' @import Rcpp
 ##' @import RcppArmadillo
 ##' @import MASS

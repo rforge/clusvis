@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list=ls())\n# Package installation\ninstall.packages(\"ClusVis\", repos=\"http://R-Forge.R-project.org\")\n\n# Package loading\nrequire(ClusVis)\n# Loading of the functions specific to Mixcomp (only for continuous and categorical data)\nsource(\"~/Documents/recherche/visualisation/codes/clusvismixcomp.R\")\n# Loading of a R object returned by Mixcomp\nload(\"~/Documents/recherche/Massiccc/example.rda\")\n\n# Estimation of the parameters used to visualize\nresvisu <- clusvisMixcomp(output)\n\n# Component interpretation graph (potatoes graph)\nplotDensityClusVisu(resvisu)\n\n# Scatter-plot of the observation memberships\nplotDensityClusVisu(resvisu,  add.obs = TRUE)",
+    "created" : 1498231301549.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1383993830",
+    "id" : "A89E1460",
+    "lastKnownWriteTime" : 1498230792,
+    "last_content_update" : 1498230792,
+    "path" : "~/Documents/recherche/visualisation/codes/examplemixcomp.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

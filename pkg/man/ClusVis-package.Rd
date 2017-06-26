@@ -6,7 +6,9 @@
 \alias{ClusVis}
 \title{Model-based visualization of model-based clustering.}
 \description{
-To do
+The main function for parameter inference is \link{clusvis}.
+However, specific functions for parameter inference  \link{clusvisMixmod} are implemented to deal with model-based clustering done with R packages Rmixmod and Rmixcomp respectively.
+After parameter inference, visualization is done with function \link{plotDensityClusVisu}.
 }
 \details{
 \tabular{ll}{
@@ -17,10 +19,6 @@ To do
   License: \tab GPL-2\cr
   LazyLoad: \tab yes\cr
 }
-
-The main function for parameter inference is \link{clusvis}.
-However, specific functions for parameter inference  \link{clusvisMixmod} are implemented to deal with model-based clustering done with R packages Rmixmod and Rmixcomp respectively.
-After parameter inference, visualization is done with function \link{plotDensityClusVisu}.
 }
 \examples{
 ### Categorical data clustering
@@ -52,6 +50,6 @@ plotDensityClusVisu(resvisu)
 plotDensityClusVisu(resvisu,  add.obs = TRUE)
 }
 \author{
-Marbac, M., Biernacki, C., and Vandewalle, V.
+Biernacki, C. and Marbac, M. and Vandewalle, V.
 }
 \keyword{package}
