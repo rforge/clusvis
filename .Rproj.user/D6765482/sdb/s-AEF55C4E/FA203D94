@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# fkcomputeModes <- function(x, m)\n#   prod(dnorm(x, m))\n# \n# objectiveModes <- function(x, pi, mu)\n#   sum(sapply(1:length(pi), function(k) fkcomputeModes(x, mu[k,]) * pi[k]))\n# \n# gradModes <- function(x, pi, mu){\n#   fk <- sapply(1:length(pi), function(k) fkcomputeModes(x, mu[k,]))\n#   sapply(1:length(x), function(j) sum(fk * pi * mu[,j]) - x[j] * sum(fk * pi))\n# }\n# \n# \n# onenewtonModes <- function(pi, mu){\n#   res <- optim(runif(ncol(mu), apply(mu, 2, min), apply(mu, 2, max)), objectiveModes, pi=pi, mu=mu, gr = gradModes, method = \"BFGS\", control = list(maxit=2000, fnscale=-1))\n#   c(res$convergence, res$par)\n# }\n# \n# \n# modesSearch <- function(pi, mu, nbinit=200){\n#   modes <- t(round(replicate(nbinit, onenewtonModes(pi, mu)), 1))\n#   modes <- modes[which(modes[,1]==0),-1]\n#   uniquecombs(modes)\n# }\n",
+    "created" : 1498477571119.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3150493360",
+    "id" : "FA203D94",
+    "lastKnownWriteTime" : 1498477578,
+    "last_content_update" : 1498477578364,
+    "path" : "~/Documents/recherche/visualisation/clusvis/pkg/R/modessearch.R",
+    "project_path" : "pkg/R/modessearch.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
