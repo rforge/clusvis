@@ -133,7 +133,7 @@ clusvisMixmod <- function(mixmodResult, sample.size=5000, maxit=10**3, nbrandomI
 
 
   out <- clusvis(logtik.estim, prop=mixmodResult@bestResult@parameters@proportions, logtik.obs=tmp, maxit, nbrandomInit, nbcpu)
-  out$EM <- sum(exp(logtik.estim) * logtik.estim) / (log(length(mixmodResult@bestResult@parameters@proportions)) * sample.size)
+  if (out$error == FALSE) out$EM <- sum(exp(logtik.estim) * logtik.estim) / (log(length(mixmodResult@bestResult@parameters@proportions)) * sample.size)
 
   return(out)
 }

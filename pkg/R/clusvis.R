@@ -106,58 +106,63 @@ clusvis <- function(logtik.estim,
   }else{
     nbcpu <- 1
   }
-  
-  if (any(logtik.estim == -Inf)) logtik.estim <- logtik.estim[which(rowSums(logtik.estim == -Inf) ==0),]
-  if (is.null(logtik.obs))   logtik.obs <- logtik.estim
   out <- list()
-  out$prop <- prop
-  out$startvec <- smartInit(logtik.estim, out$prop)
-  out$startmat <- convertmuVecToMat(out$startvec,  ncol(logtik.estim) - 1 )
-  loguref <- sweep(logtik.estim, 1, logtik.estim[,ncol(logtik.estim)], "-")[, -ncol(logtik.estim), drop=FALSE]
-  logurefweighted <- sweep(loguref, 2, log(out$prop[length(out$prop)]) - log(out$prop[-length(out$prop)]), "+")
-  if (length(prop)==2){
-    out$centers <- out$startvec
+  if (length(prop)>=3){
+    out$error <- FALSE
+    if (any(logtik.estim == -Inf)) logtik.estim <- logtik.estim[which(rowSums(logtik.estim == -Inf) ==0),]
+    if (is.null(logtik.obs))   logtik.obs <- logtik.estim
+    
+    out$prop <- prop
+    out$startvec <- smartInit(logtik.estim, out$prop)
+    out$startmat <- convertmuVecToMat(out$startvec,  ncol(logtik.estim) - 1 )
+    loguref <- sweep(logtik.estim, 1, logtik.estim[,ncol(logtik.estim)], "-")[, -ncol(logtik.estim), drop=FALSE]
+    logurefweighted <- sweep(loguref, 2, log(out$prop[length(out$prop)]) - log(out$prop[-length(out$prop)]), "+")
+    if (length(prop)==2){
+      out$centers <- out$startvec
+    }else{
+      allinit <- list(out$startvec)
+      if (nbrandomInit>1)
+        allinit <- c(allinit, lapply(1:(nbrandomInit-1), function(i) runif(length(out$startvec), max = 25)) )
+      allresults <- mclapply(allinit,
+                             function(start)
+                               optim(par = out$startvec,
+                                     fn = computeLikelihoodCPP,
+                                     gr = computeGradientCPP,
+                                     control = list(maxit=maxit, fnscale=-1),
+                                     Rprop=prop,
+                                     Rlogu=logurefweighted,
+                                     Rtik=exp(logtik.estim),
+                                     method="BFGS"), mc.cores = nbcpu)
+      values <- sapply(allresults, function(i) i$value)
+      out$optim <- allresults[[which.max(values)]]
+      values <- round(values, 2)
+      out$nbbest <- sum(values == max(values))
+      out$centers <- convertmuVecToMat(out$optim$par, ncol(logtik.estim) - 1 )
+      out$allresults <- allresults
+    }
+    out$logtik.obs <- logtik.obs
+    out$dist <- as.matrix(dist(out$centers))
+    out$partition <- list(hard= apply(logtik.obs, 1, which.max), fuzzy= exp(logtik.obs))
+    loguobs <- sweep(logtik.obs, 1, logtik.obs[,ncol(logtik.obs)], "-")[, -ncol(logtik.obs), drop=FALSE]
+    loguobsweighted <- sweep(loguobs, 2, log(out$prop[length(out$prop)]) - log(out$prop[-length(out$prop)]), "+")
+    out$y <- phiinvall(loguobsweighted, out$centers)
+    g <- as.numeric(t(out$centers) %*% out$prop)
+    out$centers <- sweep(out$centers, 2, g, "-")
+    tmp <- eigen(t(out$centers) %*% diag(out$prop) %*% out$centers)
+    out$centers <- out$centers %*% tmp$vectors
+    out$y <- sweep(out$y, 2, g, "-") %*% tmp$vectors
+    out$inertia <- tmp$values
+    out$logtik.obs <- logtik.obs
+    # out$modes <- modesSearch(out$prop, out$centers)
+    tmp <- rlogtikvisu(out, nrow(logtik.estim))
+    out$EM <- -sum(exp(logtik.estim) * logtik.estim)/(log(ncol(tmp)) * nrow(tmp))
+    out$EV <- -sum(exp(tmp) * tmp) / (log(ncol(tmp)) * nrow(logtik.estim))
+    tmp2 <- rlogtikvisu(out, nrow(logtik.estim), 1:(length(out$prop)-1))
+    out$EVtot <- -sum(exp(tmp2) * tmp2) / (log(ncol(tmp2)) * nrow(logtik.estim))
   }else{
-    allinit <- list(out$startvec)
-    if (nbrandomInit>1)
-      allinit <- c(allinit, lapply(1:(nbrandomInit-1), function(i) runif(length(out$startvec), max = 25)) )
-    allresults <- mclapply(allinit,
-                           function(start)
-                             optim(par = out$startvec,
-                                   fn = computeLikelihoodCPP,
-                                   gr = computeGradientCPP,
-                                   control = list(maxit=maxit, fnscale=-1),
-                                   Rprop=prop,
-                                   Rlogu=logurefweighted,
-                                   Rtik=exp(logtik.estim),
-                                   method="BFGS"), mc.cores = nbcpu)
-    values <- sapply(allresults, function(i) i$value)
-    out$optim <- allresults[[which.max(values)]]
-    values <- round(values, 2)
-    out$nbbest <- sum(values == max(values))
-    out$centers <- convertmuVecToMat(out$optim$par, ncol(logtik.estim) - 1 )
-    out$allresults <- allresults
+    out$error <- TRUE
   }
-  out$logtik.obs <- logtik.obs
-  out$dist <- as.matrix(dist(out$centers))
-  out$partition <- list(hard= apply(logtik.obs, 1, which.max), fuzzy= exp(logtik.obs))
-  loguobs <- sweep(logtik.obs, 1, logtik.obs[,ncol(logtik.obs)], "-")[, -ncol(logtik.obs), drop=FALSE]
-  loguobsweighted <- sweep(loguobs, 2, log(out$prop[length(out$prop)]) - log(out$prop[-length(out$prop)]), "+")
-  out$y <- phiinvall(loguobsweighted, out$centers)
-  g <- as.numeric(t(out$centers) %*% out$prop)
-  out$centers <- sweep(out$centers, 2, g, "-")
-  tmp <- eigen(t(out$centers) %*% diag(out$prop) %*% out$centers)
-  out$centers <- out$centers %*% tmp$vectors
-  out$y <- sweep(out$y, 2, g, "-") %*% tmp$vectors
-  out$inertia <- tmp$values
-  out$logtik.obs <- logtik.obs
- # out$modes <- modesSearch(out$prop, out$centers)
-  tmp <- rlogtikvisu(out, nrow(logtik.estim))
-  out$EM <- -sum(exp(logtik.estim) * logtik.estim)/(log(ncol(tmp)) * nrow(tmp))
-  out$EV <- -sum(exp(tmp) * tmp) / (log(ncol(tmp)) * nrow(logtik.estim))
-  tmp2 <- rlogtikvisu(out, nrow(logtik.estim), 1:(length(out$prop)-1))
-  out$EVtot <- -sum(exp(tmp2) * tmp2) / (log(ncol(tmp2)) * nrow(logtik.estim))
-  return(out)
+    return(out)
 }
 
 
