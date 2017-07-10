@@ -32,7 +32,8 @@
 ##' @import mgcv
 ##' @import mvtnorm
 ##' @import Rmixmod
-##'
+##' @importFrom graphics contour image legend points text 
+##' @importFrom stats dist dnorm optim optimize rnorm runif
 ##' @examples
 ##' ### Categorical data clustering
 ##' # Package loading
