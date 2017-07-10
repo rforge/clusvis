@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: ClusVis\nType: Package\nTitle: Gaussian-Based Visualization of Generic Model-Based Clustering\nVersion: 1.0.0\nAuthor: Biernacki, C. and Marbac, M. and Vandewalle, V.\nMaintainer: Marbac, M. <matthieu.marbac@gmail.com>\nDescription: Gaussian-Based Visualization of clustering achieved by mixture model on any type of data. Visualization is based on the probabilities of classification.\nLicense: GPL (>= 2)\nImports: Rcpp, MASS, RcppArmadillo,  parallel, mgcv, mvtnorm, Rmixmod\nLinkingTo: Rcpp,  RcppArmadillo,  mvtnorm\nByteCompile: true\nEncoding: UTF-8\nLazyLoad: yes\nLazyData: true\nCollate: 'clusvis.R' 'estimation.R' 'smartinit.R' 'RcppExports.R' 'plot.R' 'clusvismixmod.R'  'modessearch.R'\nDepends: R (>= 3.1)\nRoxygenNote: 6.0.1\n",
+    "created" : 1499687777963.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1717432009",
+    "id" : "8BEBD508",
+    "lastKnownWriteTime" : 1499687789,
+    "last_content_update" : 1499687789875,
+    "path" : "~/Documents/recherche/visualisation/clusvis/pkg/DESCRIPTION",
+    "project_path" : "pkg/DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

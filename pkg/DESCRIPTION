@@ -1,7 +1,7 @@
 Package: ClusVis
 Type: Package
 Title: Gaussian-Based Visualization of Generic Model-Based Clustering
-Version: 0.1.1
+Version: 1.0.0
 Author: Biernacki, C. and Marbac, M. and Vandewalle, V.
 Maintainer: Marbac, M. <matthieu.marbac@gmail.com>
 Description: Gaussian-Based Visualization of clustering achieved by mixture model on any type of data. Visualization is based on the probabilities of classification.

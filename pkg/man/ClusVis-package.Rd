@@ -15,12 +15,13 @@ After parameter inference, visualization is done with function \link{plotDensity
   Package: \tab ClusVis\cr
   Type: \tab Package\cr
   Version: \tab 1.0.0\cr
-  Date: \tab 2017-06-28\cr
+  Date: \tab 2017-07-10\cr
   License: \tab GPL-2\cr
   LazyLoad: \tab yes\cr
 }
 }
 \examples{
+\dontrun{
 ### Categorical data clustering
 # Package loading
 require(Rmixmod)
@@ -48,6 +49,7 @@ plotDensityClusVisu(resvisu)
 
 # Scatter-plot of the observation memberships
 plotDensityClusVisu(resvisu,  add.obs = TRUE)
+}
 }
 \author{
 Biernacki, C. and Marbac, M. and Vandewalle, V.

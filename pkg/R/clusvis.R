@@ -7,7 +7,7 @@
 ##'   Package: \tab ClusVis\cr
 ##'   Type: \tab Package\cr
 ##'   Version: \tab 1.0.0\cr
-##'   Date: \tab 2017-06-28\cr
+##'   Date: \tab 2017-07-10\cr
 ##'   License: \tab GPL-2\cr
 ##'   LazyLoad: \tab yes\cr
 ##' }
@@ -35,6 +35,7 @@
 ##' @importFrom graphics contour image legend points text 
 ##' @importFrom stats dist dnorm optim optimize rnorm runif
 ##' @examples
+##' \dontrun{
 ##' ### Categorical data clustering
 ##' # Package loading
 ##' require(Rmixmod)
@@ -62,6 +63,7 @@
 ##'
 ##' # Scatter-plot of the observation memberships
 ##' plotDensityClusVisu(resvisu,  add.obs = TRUE)
+##' }
 NULL
 
 
