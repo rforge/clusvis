@@ -27,7 +27,8 @@ Returns a list
 This function estimates the parameters used for visualization
 }
 \examples{
-# Package loading
+\dontrun{
+### Package loading
 require(Rmixmod)
  
 # Data loading (categorical data)
@@ -41,4 +42,7 @@ resmixmod <- mixmodCluster(birds, 3)
 # but observed probabilities of classification are used for parameter estimation
 resvisu <- clusvis(log(resmixmod@bestResult@proba),
                    resmixmod@bestResult@parameters@proportions)
+
+
+}
 }

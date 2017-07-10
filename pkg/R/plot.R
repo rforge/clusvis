@@ -12,6 +12,7 @@
 ##'
 ##' @return NULL
 ##' @examples
+##' \dontrun{
 ##' # Package loading
 ##' require(Rmixmod)
 ##' 
@@ -30,6 +31,7 @@
 ##'
 ##' # Scatter-plot of the observation memberships
 ##' plotDensityClusVisu(resvisu,  add.obs = TRUE)
+##' }
 ##' @export
 ##'
 plotDensityClusVisu <- function(res,

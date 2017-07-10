@@ -26,6 +26,7 @@ plotDensityClusVisu(res, dim = c(1, 2), threshold = 0.95, add.obs = FALSE,
 Function for visualizing the clustering results
 }
 \examples{
+\dontrun{
 # Package loading
 require(Rmixmod)
 
@@ -44,4 +45,5 @@ plotDensityClusVisu(resvisu)
 
 # Scatter-plot of the observation memberships
 plotDensityClusVisu(resvisu,  add.obs = TRUE)
+}
 }

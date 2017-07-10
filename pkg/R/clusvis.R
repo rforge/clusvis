@@ -26,7 +26,6 @@
 ##' @useDynLib ClusVis
 ##' @author Biernacki, C. and Marbac, M. and Vandewalle, V.
 ##' @import Rcpp
-##' @import RcppArmadillo
 ##' @import MASS
 ##' @import parallel
 ##' @import mgcv
@@ -79,8 +78,11 @@ NULL
 ##' @param nbcpu numeric. It specifies the number of CPU (only for linux)
 ##'
 ##' @return Returns a list
+##' @export
+##'  
 ##' @examples
-##' # Package loading
+##' \dontrun{
+##' ### Package loading
 ##' require(Rmixmod)
 ##'  
 ##' # Data loading (categorical data)
@@ -94,10 +96,10 @@ NULL
 ##' # but observed probabilities of classification are used for parameter estimation
 ##' resvisu <- clusvis(log(resmixmod@bestResult@proba),
 ##'                    resmixmod@bestResult@parameters@proportions)
-##
-##' @export
+##  
 ##'
 ##'
+##'}
 clusvis <- function(logtik.estim,
                     prop=rep(1/ncol(logtik.estim), ncol(logtik.estim)),
                     logtik.obs=NULL,
