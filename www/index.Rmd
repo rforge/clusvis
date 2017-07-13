@@ -1,0 +1,195 @@
+---
+title: '**ClusVis**'
+output: html_document
+---
+
+
+*Modelling binary variables with blocks of specific one factor distribution.*
+
+**Description:**
+  
+* *Authors*: **Christophe Biernacki** and **Matthieu Marbac** and **Vincent Vandewalle**.
+* *License*: [GPL-2](http://www.gnu.org/licenses/gpl-2.0.html).
+* *Download MvBinary 1.0*: [link](https://r-forge.r-project.org/R/?group_id=2273).  
+* *Reference*: todo
+
+<a id="top"></a>
+**Site map:**  
+
+* <a href="#intro">Introduction</a>.
+* <a href="#tutorial1">Visualization of model-based clustering of categorical data</a>.
+* <a href="#tutorial2">Visualization of model-based clustering of functional data</a>.
+
+
+All the experiments are used with R package ClusVis.1.0
+<a id="intro"></a>
+
+### Introduction
+*MvBinary* implements a method to visualize results of Gaussian or non-Gaussian
+model-based clustering, on a map. It considers that model-based clustering is done by mixture
+model $f$, defined on the native space of the variables (possibly non-continuous). The
+visualization is permitted by a constrained Gaussian mixture $g$, whose the centers
+of the components have to be estimated. The aim is to estimate the parameters
+of $g$ to make $g$ as similar as possible than $f$ for the clustering purpose. However,
+$f$ and $g$ are not defined on the same space. In clustering, the target is to model
+the probabilities of classification, thus we want that $f$ and $g$ are similar for this
+quantity. Therefore, parameters of $g$ cannot be estimated directly from distribution
+$f$. The distributions $f$ and $g$ define two distributions for the ratios of probabilities of classification, denoted $p$ and $q$ respectively. Therefore, parameters of $g$ are assessed to minimize the Kullback-Leibler divergence from $q$ to $p$. Distribution $g$ is chosen to be
+a constrained Gaussian mixture in order to have a one-to-one relation between $g$ and
+$q$, to facilitate the interpretation and to easily assess the parameters. However, we
+discuss the use of alternated continuous distribution. The distribution $g$ is represented
+on a map by projection. Therefore, the proposed method
+provides two graphs. The first graph represents the components overlaps and the risk
+of misclassification. The second graph displays the scatter-plot of the observations
+and different levels of the probabilities of classification.
+
+* <a href="#top">Go to the top</a>
+
+
+<a id="tutorial1"></a>
+
+###  Visualization of model-based clustering of categorical data
+
+**ClusVis** is illustrated with the analysis of the Congress data set \citep{schlimmer1987concept} composed of votes for each of the 435 U.S. House of Representatives Congressmen on the 16 key votes. For each vote, three levels are considered: yea, nay or unknown disposition.
+
+
+
+
+**Loadings and Model-based clustering of categorical data with Rmixmod**
+```{r, comment=""}
+rm(list=ls())
+# Data and Package loadings
+library(ClusVis)
+require(Rmixmod)
+data(congress)
+# clustering
+resmix <- mixmodCluster(congress, 4)
+```
+
+```{r, comment="", echo=FALSE}
+load("~/Documents/recherche/visualisation/experiences/resultsCongress.rda")
+```
+
+
+
+**Inference of the parameters used to visualize**
+
+Parameters used to visualize are directly estimated from the results of function $mixmodCluster$
+```{r, comment=""}
+  resvisu <- clusvisMixmod(resmix)
+```
+
+**Component interpretation graph**
+
+ClusVis implements a component interpretation graph which represents, on the most discriminating space, the centers of the projected Gaussian components (numbers). This graph permits to see proximities between components because these centers  are assessed with respects to the overlaps between the components of $f$. Moreover, we also represent the 95$\%$ confidence level (black border which separates the area outside the confidence level in white to the area inside the confidence level in gray levels) and curves of iso-probability of classification of the resulting mixture (gray levels). Finally, the accuracy of this representation is given by the difference between entropies $E(f) - E(\tilde{g})$ and the percentile of inertia by axis. We now illustrate this proposition on the running example.
+```{r, comment=""}
+  plotDensityClusVisu(resvisu, add.obs = F, positionlegend = "bottomright")
+```
+
+**Iso-probabilities of classification and scatter-plot**
+
+ClusVis implements  a scatter-plot of the observation memberships. We represent the observations by their coordinates arisen from the LDA of $g$. The partition defined by the MAP rule is given by the color of each dot. Moreover, the information about the uncertainty of classification is given by the curves of iso-probability of classification. Finally information about the visualization accuracy is given by the difference between entropies and the percentiles of inertia.
+```{r, comment=""}
+  plotDensityClusVisu(resvisu, add.obs = T, positionlegend = "bottomright")
+```
+
+
+* <a href="#top">Go to the top</a>
+
+
+<a id="tutorial2"></a>
+
+###  Visualization of model-based clustering of functional data
+
+We consider now the study of the Bike sharing system data presented by \citet{Bouveyron}.
+We analyze station occupancy data collected over the course of one month on the bike sharing system in Paris.
+The data were collected over 5 weeks, between February, 24 and March, 30, 2014, on 1189 bike stations.
+The station status information, in terms of available bikes and docks, were
+downloaded every hour during the study period for the seven systems from the
+open-data APIs provided by the JCDecaux company. 
+To accommodate the varying stations sizes (in terms of the
+number of docking points), \citet{Bouveyron} normalized the number of available bikes by the station size and obtained a loading profile for each station. 
+The final data set contains 1189 loading profiles, one per station, sampled at 1448 time points. Notice that the sampling is not perfectly regular; there is an hour, on average, between the two sample points.
+The daily and weekly habits of inhabitants introduce a periodic behavior in the
+BSS station loading profiles, with a natural period of one week. It is then natural to use a Fourier basis to smooth the curves, with basis functions corresponding to sine and cosine functions of periods equal to fractions of this natural period of the data.
+Using such a procedure, the profiles of the stations were projected on a basis
+of 25 Fourier functions.
+
+
+
+
+**Loadings and Model-based clustering of functional data with funFEM**
+```{r, comment=""}
+rm(list=ls())
+# Data and Package loadings
+require(funFEM)
+data(velib)
+
+# clustering
+basis<- create.fourier.basis(c(0, 181), nbasis=25)
+fdobj <- smooth.basis(1:181,t(velib$data),basis)$fd
+res = funFEM(fdobj,K=10,model='AkjB')
+```
+
+```{r, comment="", echo=FALSE}
+load("~/Documents/recherche/visualisation/experiences/resultsVelib.rda")
+```
+
+This figure presents the curves classified among the 10 components by the MAP rule.
+```{r, comment=""}
+# Visualization of group means
+fdmeans = fdobj; fdmeans$coefs = t(res$prms$my)
+colset <- c("darkorange1", "dodgerblue2", "black", "chartreuse2", "darkorchid2", "gold2", "deeppink2", "deepskyblue1", "firebrick2", "cyan1")
+
+par(mfrow=c(10,1), mar=c(1,4,1,1))
+for (k in 1:10){
+  tmp <- fdobj
+  who <- which(res$cls==k)
+  tmp$coefs <- tmp$coefs[,who]
+  colo <- rep(1, 10)-1
+  colo[k] <- 2
+  color <- rep("white", 10)
+  color[k]= colset[k]
+  lt <- rep(0, 10)
+  lt[k]= 1
+  plot.fd(tmp, col=colset[k], lwd=0.1, ylim=c(-0.2,1.1))
+  plot(fdmeans,col=color,xaxt='n',lwd=colo, lty=lt, add=TRUE)
+}
+```
+
+**Inference of the parameters used to visualize**
+
+Parameters used to visualize can ve estimated directly from any clustering output
+```{r, comment=""}
+   resmix <- clusvis(log(res$P), as.numeric(res$prms$prop))
+```
+
+**Component interpretation graph**
+
+The representation has a good accuracy, because the difference between entropies is small (\emph{i.e.,} $E(f)-E(\tilde{g})=-0.03$). 
+It shows a strong similarity between components three and four. 
+We can see, in Figure~\ref{fig:velibcurves} that the curves classified in these components are similar (high values with the same phase). 
+Component two and six overlap because they have a very low amplitude. 
+Moreover, Figure~\ref{fig:centersvelib} shows that component seven is the most isolated one. 
+This component corresponds to the group that \citet{Bouveyron} called \emph{empty stations}.
+Finally, components eight and nine are strongly different because they have a phase opposition. Thus, these components are at opposite locations of this figure.
+```{r, comment=""}
+plotDensityClusVisu(resmix)
+```
+
+**Iso-probabilities of classification and scatter-plot**
+
+ClusVis implements  a scatter-plot of the observation memberships. We represent the observations by their coordinates arisen from the LDA of $g$. The partition defined by the MAP rule is given by the color of each dot. Moreover, the information about the uncertainty of classification is given by the curves of iso-probability of classification. Finally information about the visualization accuracy is given by the difference between entropies and the percentiles of inertia.
+
+This figure confirms the interpretation made previously Figure~\ref{fig:centersvelib}.
+Indeed, the observations classified in components three and four are well-mixed.
+Similarily, one can observe an overlap between components two and six. 
+Finally, the observations classified in component seven are isolated.
+
+```{r, comment=""}
+plotDensityClusVisu(resmix, add.obs = T, positionlegend = "bottomright")
+```
+
+
+* <a href="#top">Go to the top</a>
+
