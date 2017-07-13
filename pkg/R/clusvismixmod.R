@@ -97,6 +97,7 @@ rlogtikmixmod <- function(resmixmod){
 ##'
 ##' @return Returns a list
 ##' @examples
+##' \dontrun{
 ##' # Package loading
 ##' require(Rmixmod)
 ##' 
@@ -115,6 +116,7 @@ rlogtikmixmod <- function(resmixmod){
 ##'
 ##' # Scatter-plot of the observation memberships
 ##' plotDensityClusVisu(resvisu,  add.obs = TRUE)
+##' }
 ##' @export
 ##'
 ##'

@@ -28,6 +28,7 @@ Returns a list
 This function estimates the parameters used for visualization of model-based clustering performs with R package Rmixmod. To achieve the parameter infernece, it automatically samples probabilities of classification from the model parameters
 }
 \examples{
+\dontrun{
 # Package loading
 require(Rmixmod)
 
@@ -46,4 +47,5 @@ plotDensityClusVisu(resvisu)
 
 # Scatter-plot of the observation memberships
 plotDensityClusVisu(resvisu,  add.obs = TRUE)
+}
 }
