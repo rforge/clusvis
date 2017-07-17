@@ -6,8 +6,8 @@
 ##' \tabular{ll}{
 ##'   Package: \tab ClusVis\cr
 ##'   Type: \tab Package\cr
-##'   Version: \tab 1.0.0\cr
-##'   Date: \tab 2017-07-10\cr
+##'   Version: \tab 1.0.1\cr
+##'   Date: \tab 2017-07-20\cr
 ##'   License: \tab GPL-2\cr
 ##'   LazyLoad: \tab yes\cr
 ##' }
@@ -65,6 +65,22 @@
 ##' }
 NULL
 
+##' Real categorical data set: Congressional Voting Records Data Set
+##' 
+##' This data set includes votes for each of the U.S. House of Representatives Congressmen on the 16 key votes identified by the CQA. The CQA lists nine different types of votes: voted for, paired for, and announced for (these three simplified to yea), voted against, paired against, and announced against (these three simplified to nay), voted present, voted present to avoid conflict of interest, and did not vote or otherwise make a position known (these three simplified to an unknown disposition).
+##'
+##'
+##' 
+##' @references Congressional Quarterly Almanac, 98th Congress, 2nd session 1984, Volume XL: Congressional Quarterly Inc. Washington, D.C., 1985. 
+##' @references Schlimmer, J. C. (1987). Concept acquisition through representational adjustment. Doctoral dissertation, Department of Information and Computer Science, University of California, Irvine, CA. 
+##' @references Website: https://archive.ics.uci.edu/ml/datasets/congressional+voting+records
+##' @name congress
+##' @docType data
+##' @keywords datasets
+##' 
+##' @examples
+##'   data(congress)
+NULL
 
 ###################################################################################
 ##' This function estimates the parameters used for visualization

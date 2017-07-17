@@ -1,7 +1,7 @@
 Package: ClusVis
 Type: Package
 Title: Gaussian-Based Visualization of Gaussian and Non-Gaussian Model-Based Clustering
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(person("Christophe", "Biernacki", email = "christophe.biernacki@math.univ-lille1.fr", role = c("aut")), person("Matthieu", "Marbac", email = "matthieu.marbac@gmail.com", role = c("aut", "cre")), person("Vincent", "Vandewalle", email = "vincent.vandewalle@inria.fr", role = c("aut")))
 Author: Christophe Biernacki [aut],
   Matthieu Marbac [aut, cre],
