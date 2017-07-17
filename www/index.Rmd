@@ -4,13 +4,13 @@ output: html_document
 ---
 
 
-*Modelling binary variables with blocks of specific one factor distribution.*
+*Gaussian-Based Visualization of Gaussian and Non-Gaussian Model-Based Clustering*
 
 **Description:**
   
 * *Authors*: **Christophe Biernacki** and **Matthieu Marbac** and **Vincent Vandewalle**.
 * *License*: [GPL-2](http://www.gnu.org/licenses/gpl-2.0.html).
-* *Download MvBinary 1.0*: [link](https://r-forge.r-project.org/R/?group_id=2273).  
+* *Download ClusVis 1.0*: [link](https://r-forge.r-project.org/R/?group_id=2273).  
 * *Reference*: todo
 
 <a id="top"></a>
@@ -25,7 +25,7 @@ All the experiments are used with R package ClusVis.1.0
 <a id="intro"></a>
 
 ### Introduction
-*MvBinary* implements a method to visualize results of Gaussian or non-Gaussian
+**ClusVis** implements a method to visualize results of Gaussian or non-Gaussian
 model-based clustering, on a map. It considers that model-based clustering is done by mixture
 model $f$, defined on the native space of the variables (possibly non-continuous). The
 visualization is permitted by a constrained Gaussian mixture $g$, whose the centers

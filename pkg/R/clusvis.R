@@ -1,5 +1,5 @@
 
-##' Model-based visualization of model-based clustering.
+##' Gaussian-Based Visualization of Gaussian and Non-Gaussian Model-Based Clustering.
 ##'
 ##'  
 ##'
@@ -14,7 +14,7 @@
 ##'
 ##' @description 
 ##' The main function for parameter inference is \link{clusvis}.
-##' However, specific functions for parameter inference  \link{clusvisMixmod} are implemented to deal with model-based clustering done with R packages Rmixmod and Rmixcomp respectively.
+##' Moreover, specific functions for parameter inference  \link{clusvisMixmod} are implemented to deal with model-based clustering done with R packages Rmixmod and Rmixcomp respectively.
 ##' After parameter inference, visualization is done with function \link{plotDensityClusVisu}.
 ##'
 ##'
