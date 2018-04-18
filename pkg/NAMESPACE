@@ -2,10 +2,12 @@
 
 export(clusvis)
 export(clusvisMixmod)
+export(clusvisVarSelLCM)
 export(plotDensityClusVisu)
 import(MASS)
 import(Rcpp)
 import(Rmixmod)
+import(VarSelLCM)
 import(mgcv)
 import(mvtnorm)
 import(parallel)

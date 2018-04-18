@@ -31,11 +31,12 @@
 ##' @import mgcv
 ##' @import mvtnorm
 ##' @import Rmixmod
+##' @import VarSelLCM
 ##' @importFrom graphics contour image legend points text 
 ##' @importFrom stats dist dnorm optim optimize rnorm runif
 ##' @examples
 ##' \dontrun{
-##' ### Categorical data clustering
+##' ### Categorical data clustering with Rmixmod
 ##' # Package loading
 ##' require(Rmixmod)
 ##'  

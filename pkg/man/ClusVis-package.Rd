@@ -22,7 +22,7 @@ After parameter inference, visualization is done with function \link{plotDensity
 }
 \examples{
 \dontrun{
-### Categorical data clustering
+### Categorical data clustering with Rmixmod
 # Package loading
 require(Rmixmod)
  
