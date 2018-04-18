@@ -6,9 +6,9 @@
 ##' \tabular{ll}{
 ##'   Package: \tab ClusVis\cr
 ##'   Type: \tab Package\cr
-##'   Version: \tab 1.0.1\cr
-##'   Date: \tab 2017-07-20\cr
-##'   License: \tab GPL-2\cr
+##'   Version: \tab 1.1.0\cr
+##'   Date: \tab 2018-04-18\cr
+##'   License: \tab GPL-3\cr
 ##'   LazyLoad: \tab yes\cr
 ##' }
 ##'
@@ -99,6 +99,28 @@ NULL
 ##'  
 ##' @examples
 ##' \dontrun{
+##'  ####### First example with VarSelLCM
+##'  # Package loading
+##'  require(VarSelLCM)
+##'
+##'  # Data loading (categorical data)
+##'  data("congress")
+##'  # Model-based clustering with 3 components
+##'  res <- VarSelCluster(congress, 3)
+##'
+##'  # Inference of the parameters used for results visualization
+##'  # (specific for Rmixmod results)
+##'  # It is better because probabilities of classification are generated
+##'  # by using the model parameters
+##'  resvisu <- clusvisVarSelLCM(res)
+##'
+##'  # Component interpretation graph
+##'  plotDensityClusVisu(resvisu)
+##'
+##'  # Scatter-plot of the observation memberships
+##'  plotDensityClusVisu(resvisu,  add.obs = TRUE)
+##'
+##'  ####### Second example with Rmixmod
 ##' ### Package loading
 ##' require(Rmixmod)
 ##'  

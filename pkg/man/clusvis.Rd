@@ -28,6 +28,28 @@ This function estimates the parameters used for visualization
 }
 \examples{
 \dontrun{
+ ####### First example with VarSelLCM
+ # Package loading
+ require(VarSelLCM)
+
+ # Data loading (categorical data)
+ data("congress")
+ # Model-based clustering with 3 components
+ res <- VarSelCluster(congress, 3)
+
+ # Inference of the parameters used for results visualization
+ # (specific for Rmixmod results)
+ # It is better because probabilities of classification are generated
+ # by using the model parameters
+ resvisu <- clusvisVarSelLCM(res)
+
+ # Component interpretation graph
+ plotDensityClusVisu(resvisu)
+
+ # Scatter-plot of the observation memberships
+ plotDensityClusVisu(resvisu,  add.obs = TRUE)
+
+ ####### Second example with Rmixmod
 ### Package loading
 require(Rmixmod)
  

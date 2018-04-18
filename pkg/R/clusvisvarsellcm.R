@@ -66,24 +66,27 @@ rlogtikvarsellcm <- function(varselResult)
 ##' @return Returns a list
 ##' @examples
 ##' \dontrun{
-##' # Package loading
-##' require(Rmixmod)
-##' 
-##' # Data loading (categorical data)
-##' data(birds)
 ##'
-##' # Model-based clustering with 3 components
-##' resmixmod <- mixmodCluster(birds, 3)
+##'  # Package loading
+##'  require(VarSelLCM)
 ##'
-##' # Inference of the parameters used for results visualization
-##' # (specific for Rmixmod results)
-##' resvisu <- clusvisMixmod(resmixmod)
+##'  # Data loading (categorical data)
+##'  data("congress")
+##'  # Model-based clustering with 3 components
+##'  res <- VarSelCluster(congress, 3)
 ##'
-##' # Component interpretation graph
-##' plotDensityClusVisu(resvisu)
+##'  # Inference of the parameters used for results visualization
+##'  # (specific for Rmixmod results)
+##'  # It is better because probabilities of classification are generated
+##'  # by using the model parameters
+##'  resvisu <- clusvisVarSelLCM(res)
 ##'
-##' # Scatter-plot of the observation memberships
-##' plotDensityClusVisu(resvisu,  add.obs = TRUE)
+##'  # Component interpretation graph
+##'  plotDensityClusVisu(resvisu)
+##'
+##'  # Scatter-plot of the observation memberships
+##'  plotDensityClusVisu(resvisu,  add.obs = TRUE)
+##'
 ##' }
 ##' @export
 ##'

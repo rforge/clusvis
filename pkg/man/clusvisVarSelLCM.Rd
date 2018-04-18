@@ -28,23 +28,26 @@ This function estimates the parameters used for visualization of model-based clu
 }
 \examples{
 \dontrun{
-# Package loading
-require(Rmixmod)
 
-# Data loading (categorical data)
-data(birds)
+ # Package loading
+ require(VarSelLCM)
 
-# Model-based clustering with 3 components
-resmixmod <- mixmodCluster(birds, 3)
+ # Data loading (categorical data)
+ data("congress")
+ # Model-based clustering with 3 components
+ res <- VarSelCluster(congress, 3)
 
-# Inference of the parameters used for results visualization
-# (specific for Rmixmod results)
-resvisu <- clusvisMixmod(resmixmod)
+ # Inference of the parameters used for results visualization
+ # (specific for Rmixmod results)
+ # It is better because probabilities of classification are generated
+ # by using the model parameters
+ resvisu <- clusvisVarSelLCM(res)
 
-# Component interpretation graph
-plotDensityClusVisu(resvisu)
+ # Component interpretation graph
+ plotDensityClusVisu(resvisu)
 
-# Scatter-plot of the observation memberships
-plotDensityClusVisu(resvisu,  add.obs = TRUE)
+ # Scatter-plot of the observation memberships
+ plotDensityClusVisu(resvisu,  add.obs = TRUE)
+
 }
 }
