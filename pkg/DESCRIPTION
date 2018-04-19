@@ -16,5 +16,5 @@ Encoding: UTF-8
 LazyLoad: yes
 LazyData: true
 Collate: 'clusvis.R' 'estimation.R' 'smartinit.R' 'RcppExports.R' 'plot.R' 'clusvismixmod.R'  'clusvisvarsellcm.R'  'modessearch.R'
-Depends: R (>= 3.4.1)
+Depends: R (>= 3.4)
 RoxygenNote: 6.0.1
