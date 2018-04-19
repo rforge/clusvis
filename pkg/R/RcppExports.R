@@ -2,10 +2,10 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 computeGradientCPP <- function(Rparam, Rprop, Rlogu, Rtik) {
-    .Call('ClusVis_computeGradientCPP', PACKAGE = 'ClusVis', Rparam, Rprop, Rlogu, Rtik)
+    .Call('_ClusVis_computeGradientCPP', PACKAGE = 'ClusVis', Rparam, Rprop, Rlogu, Rtik)
 }
 
 computeLikelihoodCPP <- function(Rparam, Rprop, Rlogu, Rtik) {
-    .Call('ClusVis_computeLikelihoodCPP', PACKAGE = 'ClusVis', Rparam, Rprop, Rlogu, Rtik)
+    .Call('_ClusVis_computeLikelihoodCPP', PACKAGE = 'ClusVis', Rparam, Rprop, Rlogu, Rtik)
 }
 

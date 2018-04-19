@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // computeGradientCPP
 NumericVector computeGradientCPP(NumericVector Rparam, NumericVector Rprop, NumericMatrix Rlogu, NumericMatrix Rtik);
-RcppExport SEXP ClusVis_computeGradientCPP(SEXP RparamSEXP, SEXP RpropSEXP, SEXP RloguSEXP, SEXP RtikSEXP) {
+RcppExport SEXP _ClusVis_computeGradientCPP(SEXP RparamSEXP, SEXP RpropSEXP, SEXP RloguSEXP, SEXP RtikSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -22,7 +22,7 @@ END_RCPP
 }
 // computeLikelihoodCPP
 NumericVector computeLikelihoodCPP(NumericVector Rparam, NumericVector Rprop, NumericMatrix Rlogu, NumericMatrix Rtik);
-RcppExport SEXP ClusVis_computeLikelihoodCPP(SEXP RparamSEXP, SEXP RpropSEXP, SEXP RloguSEXP, SEXP RtikSEXP) {
+RcppExport SEXP _ClusVis_computeLikelihoodCPP(SEXP RparamSEXP, SEXP RpropSEXP, SEXP RloguSEXP, SEXP RtikSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -33,4 +33,15 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(computeLikelihoodCPP(Rparam, Rprop, Rlogu, Rtik));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_ClusVis_computeGradientCPP", (DL_FUNC) &_ClusVis_computeGradientCPP, 4},
+    {"_ClusVis_computeLikelihoodCPP", (DL_FUNC) &_ClusVis_computeLikelihoodCPP, 4},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_ClusVis(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }
