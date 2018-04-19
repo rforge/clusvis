@@ -92,6 +92,7 @@ rlogtikvarsellcm <- function(varselResult)
 ##'
 ##'
 clusvisVarSelLCM <- function(varselResult, sample.size=5000, maxit=10**3, nbrandomInit=4*varselResult@model@g, nbcpu=1, loccont=NULL){
+  if (class(varselResult)!="VSLCMresults") stop("Object varselResult must be an object returned by the function VarSelCluster of the R package VarSelLCM")
   logtik.estim <-  t(replicate(sample.size, rlogtikvarsellcm(varselResult)))
   out <- clusvis(logtik.estim,
                  prop=varselResult@param@pi,
